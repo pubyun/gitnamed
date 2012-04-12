@@ -132,8 +132,9 @@ your private repo url is something like:
 * push code to your private repo:
 
 ```
-#git remote add hub ssh://git@git.pubyun.org/gitnamed.git
-#git push hub master
+#su - named
+$git remote add hub ssh://git@git.pubyun.org/gitnamed.git
+$git push hub master
 ```
 
 now you can test git pull:
