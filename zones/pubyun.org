@@ -1,6 +1,6 @@
 $TTL 3600
 @ 		IN	SOA	ns1.pubyun.org. sysadm.pubyun.com. (
-			2012040813	; serial
+			2012040815	; serial
 			7200		; refresh
 			1800		; retry
 			1209600		; expire
@@ -16,4 +16,5 @@ ns1     172800    IN      A       61.160.235.206
 ns2     172800    IN      A       61.160.235.203
 www	IN	A   61.160.235.206
 test	IN	A   61.160.235.201
+test2	IN	A   61.160.235.202
 *	IN	CNAME   pubyun.org.
