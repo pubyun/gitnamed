@@ -1,0 +1,6 @@
+include "/home/named/named.conf";
+
+zone "pubyun.org" {
+    type master;
+    file "zones/pubyun.org";
+};

@@ -1,0 +1,11 @@
+include "/home/named/named.conf";
+
+zone "pubyun.org" {
+    type slave;
+    file "zones/pubyun.org";
+    masters {
+        61.160.235.206;
+    };
+};
+
+
