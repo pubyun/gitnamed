@@ -196,7 +196,7 @@ server reload successful
 #su - named
 $vi .ssh/authorized_keys 
 # enable push from git server
-from="61.160.235.208",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty,command="/home/named/script/sync.sh"  ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEApclazU9YfjfahDYT2692PSWYvjTOoFMTfgyTRpN/c/bq+GNPrC9hBunpVrhHyQ439t3Zj4VIEweY4AOTRstf94+IRp7BvYC8etb4x+M7oPbsa0JQGnfFIYrzpo7e2+t3+i1VfRgO4OtqrQTwuB45a+8zL8uHV6rK1vbDNUKdfiO7NRmCQoelhWgREUJkhYn00NCQyUUhcBB+MtP4mk4vHHKT2ZdAU/DeNL5cKbet90t871enIrfOMxkIRiCRA5SLJVQp9vWlmfo2Da79DVjWohKIrngF6ydJ7zJd3Izw0bVt7ZoawvTfQhuIPdAd6bJ95kOYzoJbFjin0wY8ZF6Qkw== 
+from="61.160.235.208",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty,command="/home/named/script/syndns.py"  ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEApclazU9YfjfahDYT2692PSWYvjTOoFMTfgyTRpN/c/bq+GNPrC9hBunpVrhHyQ439t3Zj4VIEweY4AOTRstf94+IRp7BvYC8etb4x+M7oPbsa0JQGnfFIYrzpo7e2+t3+i1VfRgO4OtqrQTwuB45a+8zL8uHV6rK1vbDNUKdfiO7NRmCQoelhWgREUJkhYn00NCQyUUhcBB+MtP4mk4vHHKT2ZdAU/DeNL5cKbet90t871enIrfOMxkIRiCRA5SLJVQp9vWlmfo2Da79DVjWohKIrngF6ydJ7zJd3Izw0bVt7ZoawvTfQhuIPdAd6bJ95kOYzoJbFjin0wY8ZF6Qkw== 
 ```
 
 * test pushing data to master:
