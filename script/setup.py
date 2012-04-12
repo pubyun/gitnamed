@@ -13,6 +13,9 @@ def main(dns_type):
     # delete /etc/rndc.conf, or rndc will use it
     if os.path.isfile('/etc/rndc.conf'):
         os.unlink('/etc/rndc.conf')
+    # debian
+    if os.path.isfile('/etc/bind/rndc.conf'):
+        os.unlink('/etc/bind/rndc.conf')
 
     # change user homedir and shell 
     # usermod  -d /home/named/ -s /bin/bash named
