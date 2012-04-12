@@ -1,0 +1,11 @@
+*.pyc
+*.pyo
+.bashrc
+.bash_history
+.lesshst
+.ssh
+.viminfo
+.gitconfig
+rndc.key
+named.conf.master
+named.conf.slave

@@ -1,0 +1,19 @@
+$TTL 3600
+@ 		IN	SOA	ns1.pubyun.org. sysadm.pubyun.com. (
+			2012040812	; serial
+			7200		; refresh
+			1800		; retry
+			1209600		; expire
+			300 )		; minimum
+		IN	NS	ns1.pubyun.org.
+		IN	NS	ns2.pubyun.org.
+		IN	A	61.160.235.206
+                IN      MX      10 ASPMX.L.GOOGLE.COM.
+                IN      MX      20 ALT1.ASPMX.L.GOOGLE.COM.
+                IN      MX      20 ALT2.ASPMX.L.GOOGLE.COM.
+$ORIGIN pubyun.org.
+ns1     172800    IN      A       61.160.235.206
+ns2     172800    IN      A       61.160.235.203
+www	IN	A   61.160.235.206
+test	IN	A   61.160.235.200
+*	IN	CNAME   pubyun.org.
