@@ -71,8 +71,8 @@ Debian:
 * get source code
 
 ```
-#git clone git://github.com/pubyun/gitnamed.git /home/master
-#cd /home/master
+#git clone git://github.com/pubyun/gitnamed.git /home/named
+#cd /home/named
 ```
 
 * modify IP of domain name server in config file:  
