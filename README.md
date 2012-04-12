@@ -155,7 +155,7 @@ as master dns.
 * runing setup file:
 
 ```
-#./script/setup.py 
+#./script/setup.py slave
 ```
 
 * start named
