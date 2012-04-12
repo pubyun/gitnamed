@@ -81,6 +81,21 @@ Debian:
 #vi script/settings.py
 ```
 
+* modify trusted IP of your domain name server
+
+you should include ip of all your slave dns servers in the trusted
+ip block, so they can transfer data from master dns server
+
+```
+#vi named.conf
+acl trusted {
+    127.0.0.1/32;
+    192.168.0.0/16;
+    172.16.0.0/16;
+    61.160.235.0/24;
+};
+```
+
 * runing setup file:
 
 ```
