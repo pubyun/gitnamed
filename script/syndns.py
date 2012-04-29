@@ -104,8 +104,9 @@ def main():
     if code:
         sys.stderr.write('git pull code failed\n')
 
-    # get all zones
-    zones = [f for f in os.listdir(settings.zones_path) if is_file(f)]
+    # get all zones, exclude journal file
+    zones = [f for f in os.listdir(settings.zones_path)
+                 if is_file(f) and not f.endswith('.jnl')]
 
     # create named.conf.master
     with open(named_conf_master, 'w') as f:
