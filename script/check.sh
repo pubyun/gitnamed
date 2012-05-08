@@ -29,7 +29,7 @@ git diff-index --cached --name-only HEAD |
 grep '^zones/' |
 git checkout-index --stdin --prefix=$tmpdir/
  
-find $tmpdir/zones -type f -type f |
+find $tmpdir/zones -type f |
 while read zonefile; do
     zone=`echo $zonefile | sed -e "s/^${tmpdir}\/zones\/\(.*\)$/\1/"`
     named-checkzone -q $zone $zonefile

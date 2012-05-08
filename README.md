@@ -217,6 +217,10 @@ $vi  ~git/repositories/gitnamed.git/hooks/post-receive
 /usr/bin/ssh -i /home/git/.ssh/gitnamed named@ns1.pubyun.org sleep 1
 ```
 
+### add pre-commit hook to check zone file
+
+ln -s ../../script/check.sh .git/hooks/pre-commit 
+
 ### it works now
 
 you can clone the git repo to any workstation, edit zone file, commit and push it.  
