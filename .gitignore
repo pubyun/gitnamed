@@ -1,5 +1,6 @@
 *.pyc
 *.pyo
+*.jnl
 .bashrc
 .bash_history
 .lesshst
