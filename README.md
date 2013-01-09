@@ -9,7 +9,7 @@ you don't need to touch name server any more, you have all your
 data in git repo with a history of your zone file.  
 
 if you need add a new zone, just create a new file in zones directory,
-zone file name should be the domain name:
+zone file name should be the domain name.
 
 ```
 vi zones/example.com
@@ -217,9 +217,22 @@ $vi  ~git/repositories/gitnamed.git/hooks/post-receive
 /usr/bin/ssh -i /home/git/.ssh/gitnamed named@ns1.pubyun.org sleep 1
 ```
 
-### add pre-commit hook to check zone file
+### add pre-commit hook to check zone file and auto increment serial
 
 ln -s ../../script/check.sh .git/hooks/pre-commit 
+
+you should put the serial of SOA in separated line and end it with
+a comment "; serial":
+
+```
+$TTL 3600
+@ 		IN	SOA	ns1.example.com. sysadm.example.com. (
+			2012040812	; serial
+			7200		; refresh
+			1800		; retry
+			1209600		; expire
+			300 )		; minimum
+```
 
 ### it works now
 

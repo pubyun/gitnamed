@@ -32,6 +32,28 @@ git checkout-index --stdin --prefix=$tmpdir/
 find $tmpdir/zones -type f |
 while read zonefile; do
     zone=`echo $zonefile | sed -e "s/^${tmpdir}\/zones\/\(.*\)$/\1/"`
+    git diff --cached HEAD zones/$zone | awk ' BEGIN {
+    serial_new=0
+    serial_old=0
+}
+/;[ \t]+serial/ {
+    if ($1 == "-")
+        serial_old = $2
+    if ($1 == "+")
+        serial_new = $2
+}
+END { 
+    if (serial_old < serial_new) {
+        exit 0
+    } else {
+        exit -1
+    }
+}' 
+    if [ $? -ne 0 ]; then
+        perl -pi -e 'if (/^\s+(\d{10})\s+;\s+serial/i) { my $i = $1+1; s/$1/$i/;}' zones/$zone
+        git add zones/$zone
+#        echo "serial of zone $zone not valid!" >> $tmpfile1
+    fi
     named-checkzone -q $zone $zonefile
     # If named-checkzone reports an error, get some output:
     if [ $? -ne 0 ]; then
