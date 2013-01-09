@@ -1,5 +1,6 @@
-GitNamed
-========
+# GitNamed
+
+## Overview
 
 GitNamed is a project that manage name server by git. you can clone
 the git repo to any workstation, edit zone file, commit and push it.
@@ -52,8 +53,7 @@ blog: http://www.pubyun.com/blog
 github: https://github.com/pubyun/gitnamed  
 
 
-Install Guide
--------------
+## Install Guide
 
 ### enviroment 
 
