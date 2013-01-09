@@ -1,5 +1,17 @@
 # GitNamed
 
+GitNamed is a project that manage name server by git.
+
+## Feature
+
+* a frame to manage your DNS server
+* put all your DNS data into git, and you have a revision for your
+DNS data, you can backup and restore them easily
+* it's easy to manage your DNS resource record, just edit and commit
+* DNS manager need no OS account on DNS server, only git account
+* using hooks to validate syntax of zone file when commting
+* using hooks to auto increcement serial of SOA when commting
+
 ## Overview
 
 GitNamed is a project that manage name server by git. you can clone
