@@ -87,25 +87,12 @@ Debian:
 #cd /home/named
 ```
 
-* modify IP of domain name server in config file:  
+* modify IP of domain name server in config file, and generate
+key to transfer zone from master to slave:
 
 ```
+#dnssec-keygen -a hmac-md5 -b 128 -n HOST master2slave
 #vi script/settings.py
-```
-
-* modify trusted IP of your domain name server
-
-you should include ip of all your slave dns servers in the trusted
-ip block, so they can transfer data from master dns server
-
-```
-#vi named.conf
-acl trusted {
-    127.0.0.1/32;
-    192.168.0.0/16;
-    172.16.0.0/16;
-    61.160.235.0/24;
-};
 ```
 
 * runing setup file:

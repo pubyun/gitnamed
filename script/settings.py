@@ -32,6 +32,10 @@ slave_ips = {
             '61.10.35.200':'centos',
            }
 
+# key to transfer zone from master to slave
+# dnssec-keygen -a hmac-md5 -b 128 -n HOST master2slave
+transfer_key_body = 'MFnphERTs7gnX+XHcWoEOA=='
+
 # some dynamic updated zones
 dzones = {
             'dynupdate.org':'user1',

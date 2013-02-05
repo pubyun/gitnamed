@@ -28,10 +28,23 @@ import settings
 named_conf_master = os.path.join(settings.named_path, 'named.conf.master')
 named_conf_slave = os.path.join(settings.named_path, 'named.conf.slave')
 
+transfer_key_name = 'master2slave'
+
+transfer_key = u'''
+key %s {
+    algorithm hmac-md5;
+    secret "%s";
+};
+
+''' % (transfer_key_name, settings.transfer_key_body)
+
 nameconf_master = u'''zone "%s" {
     type master;
     file "zones/%s";
     %s;
+    allow-transfer {
+        %s;
+    };
 %s};
 '''
 
@@ -42,17 +55,9 @@ nameconf_slave = u'''zone "%s" {
         %s;
     };
 };
-
-
 '''
 
-dyndns_update = u'''
-        allow-update {key %s; };
-        allow-transfer {
-            key %s;
-            trusted;
-        };
-'''
+dyndns_update = u'''    allow-update {key %s; };\n'''
 
 all_slave = ' '.join('%s;' % slave_ip
                      for (slave_ip, system) in settings.slave_ips.items())
@@ -73,12 +78,14 @@ def is_file(name):
     return os.path.isfile(os.path.join(settings.zones_path, name))
 
 def get_master(z):
+    transfer_key = 'key %s' % transfer_key_name;
     if z in settings.dzones:
         key = settings.dzones[z]
-        dstring = dyndns_update % (key, key)
+        dstring = dyndns_update % key
+        transfer_key += '; key %s' % key
     else:
         dstring = ''
-    return nameconf_master%(z, z, notify_str, dstring)
+    return nameconf_master%(z, z, notify_str, transfer_key, dstring)
 
 def reload_slave(slave_ip, system):
     user = get_user(system)
@@ -118,12 +125,16 @@ def main():
     # create named.conf.master
     with open(named_conf_master, 'w') as f:
         f.write('include "%s/named.conf";\n\n' % settings.named_path)
-        f.write(''.join([get_master(z) for z in zones]))
+        f.write(transfer_key)
+        f.write('\n'.join([get_master(z) for z in zones]))
 
     # create named.conf.slave
     with open(named_conf_slave, 'w') as f:
         f.write('include "%s/named.conf";\n\n' % settings.named_path)
-        f.write(''.join([nameconf_slave%(z, z,
+        f.write(transfer_key)
+        f.write('server %s { keys %s; };\n\n' %
+                (settings.master_ip, transfer_key_name))
+        f.write('\n'.join([nameconf_slave%(z, z,
             settings.master_ip) for z in zones]))
 
     # reload master dns
