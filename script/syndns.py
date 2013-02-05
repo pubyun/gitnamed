@@ -31,6 +31,7 @@ named_conf_slave = os.path.join(settings.named_path, 'named.conf.slave')
 nameconf_master = u'''zone "%s" {
     type master;
     file "zones/%s";
+    %s;
 %s};
 '''
 
@@ -53,6 +54,12 @@ dyndns_update = u'''
         };
 '''
 
+all_slave = ' '.join('%s;' % slave_ip
+                     for (slave_ip, system) in settings.slave_ips.items())
+
+notify_str = 'also-notify {%s}' % all_slave
+
+
 def get_user(system):
     if system == 'centos':
         return 'named'
@@ -71,7 +78,7 @@ def get_master(z):
         dstring = dyndns_update % (key, key)
     else:
         dstring = ''
-    return nameconf_master%(z, z, dstring)
+    return nameconf_master%(z, z, notify_str, dstring)
 
 def reload_slave(slave_ip, system):
     user = get_user(system)
