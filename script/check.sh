@@ -54,7 +54,7 @@ END {
         git add zones/$zone
 #        echo "serial of zone $zone not valid!" >> $tmpfile1
     fi
-    named-checkzone -q $zone $zonefile
+    named-checkzone -q -k fail -m fail -M fail -n fail $zone $zonefile
     # If named-checkzone reports an error, get some output:
     if [ $? -ne 0 ]; then
     named-checkzone $zone $zonefile | sed "s#$tmpdir/##" >> $tmpfile1 2>&1
