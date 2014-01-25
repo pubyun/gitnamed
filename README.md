@@ -76,6 +76,8 @@ CentOS:
 #yum -y install bind
 Debian:
 #aptitude -y install bind9
+Mac OS X:
+$brew install bind
 ```
 
 ### Setup master DNS server
