@@ -2,27 +2,24 @@
 
 GitNamed is a project that manage name server by git.
 
-## Feature
+## Features
 
-* a frame to manage your DNS server
-* put all your DNS data into git, and you have a revision for your
-DNS data, you can backup and restore them easily
-* it's easy to manage your DNS resource record, just edit and commit
-* DNS manager need no OS account on DNS server, only git account
-* using hooks to validate syntax of zone file when commting
-* using hooks to auto increcement serial of SOA when commting
+* A frame to manage your DNS server(s)
+* Put all your DNS data into git, and you have a revision from which you can backup and restore easily
+* It's easy to manage your DNS resource records, just edit and commit
+* DNS manager needs no OS account on the DNS server, only a git account
+* Using hooks to validate syntax of zone file when commting
+* Using hooks to auto increcement serial of SOA when commting
 
 ## Overview
 
-GitNamed is a project that manage name server by git. you can clone
-the git repo to any workstation, edit zone file, commit and push it.
-the data will push to the master and slave name server on the fly.  
+GitNamed is a project that manages your name server(s) by git. You can clone
+the git repo to any workstation, edit zone file, commit and push the changes.
+The data will be pushed to the master and slave name server on the fly.  
 
-you don't need to touch name server any more, you have all your
-data in git repo with a history of your zone file.  
+You don't need to touch name server any more, you have all your dat in a git repo with a history of your changes.  
 
-if you need add a new zone, just create a new file in zones directory,
-zone file name should be the domain name.
+If you need add a new zone, just create a new file in zones directory, zone file name should be the domain name.
 
 ```
 vi zones/example.com
@@ -30,7 +27,7 @@ git add zones/example.com
 git commit -m "add example.com"
 ```
 
-here is a example zone file:
+Here is a example zone file:
 
 ```
 $TTL 3600
@@ -51,11 +48,10 @@ test	IN	A   61.160.235.200
 *	IN	CNAME   example.com.
 ```
 
-any one having the access right of git repo can manage the name  
-server now.
+Any one whos has the access right of git repo can manage the name server now.
 
 
-it's tested on CentOS 6.2 and Debian 6.0.
+It's been tested on CentOS 6.2 and Debian 6.0.
 
 If you find any problems, please contact me:
 
