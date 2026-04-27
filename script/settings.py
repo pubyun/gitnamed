@@ -47,7 +47,7 @@ named_path = os.path.dirname(os.path.abspath(
 
 zones_path = os.path.join(named_path, 'zones')
 
-system = platform.dist()[0]
+system = platform.freedesktop_os_release()['VENDOR_NAME']
 if system == 'centos':
     user = 'named'
     sysconf = '/etc/sysconfig/named'
