@@ -51,7 +51,9 @@ test	IN	A   61.160.235.200
 Any one whos has the access right of git repo can manage the name server now.
 
 
-It's been tested on CentOS 6.2 and Debian 6.0.
+It runs on Python 3 and supports the RHEL family (RHEL/CentOS/Fedora/AlmaLinux/Rocky)
+and the Debian family (Debian/Ubuntu). The OS is detected automatically from
+`/etc/os-release`.
 
 If you find any problems, please contact me:
 
@@ -68,10 +70,10 @@ github: https://github.com/pubyun/gitnamed
 * install bind  on master and slave dns server
 
 ```
-CentOS:
+RHEL family (RHEL/CentOS/Fedora/AlmaLinux/Rocky):
 #yum -y install bind
-Debian:
-#aptitude -y install bind9
+Debian family (Debian/Ubuntu):
+#apt-get -y install bind9
 Mac OS X:
 $brew install bind
 ```
@@ -104,6 +106,9 @@ key to transfer zone from master to slave:
 ```
 #service named start
 ```
+
+NOTE: on Debian older than 11 (bullseye) the service is named `bind9`
+(`service bind9 start`); it was renamed to `named` since then.
 
 ### setup a private git Repo
 

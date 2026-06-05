@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
 # vim: tabstop=4 shiftwidth=4 softtabstop=4
@@ -66,9 +66,10 @@ notify_str = 'also-notify {%s}' % all_slave
 
 
 def get_user(system):
-    if system == 'centos':
+    family = settings.os_family(system)
+    if family == 'rhel':
         return 'named'
-    elif system == 'debian':
+    elif family == 'debian':
         return 'bind'
     else:
         sys.stderr.write("can't determinate OS\n")
@@ -100,9 +101,9 @@ def reload_slave(slave_ip, system):
         sys.exit(-1)
 
     # reload slave dns
-    rndc_conf = '%s/rndc.key' % settings.named_path
+    rndc_conf = '%s/rndc.conf' % settings.named_path
     code = subprocess.call('/usr/bin/ssh %s@%s '
-                            '/usr/sbin/rndc -k %s -s localhost reload' %
+                            '/usr/sbin/rndc -c %s -s localhost reload' %
                             (user, slave_ip, rndc_conf), shell=True)
     if code:
         sys.stderr.write('reload slave name server %s failed\n' % slave_ip)
@@ -138,8 +139,8 @@ def main():
             settings.master_ip) for z in zones]))
 
     # reload master dns
-    rndc_conf = '%s/rndc.key' % settings.named_path
-    code = subprocess.call('/usr/sbin/rndc -k %s -s localhost reload' %
+    rndc_conf = '%s/rndc.conf' % settings.named_path
+    code = subprocess.call('/usr/sbin/rndc -c %s -s localhost reload' %
                            rndc_conf, shell=True)
     if code:
         sys.stderr.write('reload master name server failed\n')

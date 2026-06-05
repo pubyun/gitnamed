@@ -10,3 +10,4 @@
 rndc.key
 named.conf.master
 named.conf.slave
+*.swp
